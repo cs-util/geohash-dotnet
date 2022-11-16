@@ -11,7 +11,7 @@ namespace Geohash
     /// <summary>
     /// Geohasher 
     /// </summary>
-    public class Geohasher
+    public static class Geohasher
     {
         private static readonly char[] base32Chars = "0123456789bcdefghjkmnpqrstuvwxyz".ToCharArray();
 

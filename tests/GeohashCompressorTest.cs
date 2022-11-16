@@ -12,9 +12,6 @@ namespace Geohash.Tests
         [TestMethod]
         public void SmallCompressionTest()
         {
-            var compressor = new GeohashCompressor();
-
-
             var list = new List<string>();
 
             list.AddRange(Geohasher.GetSubhashes("ABC"));
@@ -25,7 +22,7 @@ namespace Geohash.Tests
 
             list.AddRange(new List<string>{ "KK", "F", "FKUVC", "FKUVX"});
 
-            var compressed = compressor.Compress(list.ToArray());
+            var compressed = GeohashCompressor.Compress(list.ToArray());
 
             Assert.AreEqual(7, compressed.Count);
         }
@@ -33,11 +30,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void LargeCompressionTest()
         {
-            var compressor = new GeohashCompressor();
-
-            var hasher = new Geohasher();
-
-            var compressed = compressor.Compress(GetHashes().ToArray());
+            var compressed = GeohashCompressor.Compress(GetHashes().ToArray());
 
             Assert.AreEqual(152, compressed.Count);
 

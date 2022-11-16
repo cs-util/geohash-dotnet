@@ -5,10 +5,10 @@ using System.Text;
 
 namespace Geohash
 {
-    public class GeohashCompressor
+    public static class GeohashCompressor
     {
 
-        public List<string> Compress(string[] hashes, int minlevel = 1, int maxlevel = 12)
+        public static List<string> Compress(string[] hashes, int minlevel = 1, int maxlevel = 12)
         {
             HashSet<string> geohashes = new HashSet<string>(hashes);
             HashSet<string> deletegh = new HashSet<string>();
