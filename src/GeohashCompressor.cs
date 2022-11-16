@@ -7,7 +7,6 @@ namespace Geohash
 {
     public class GeohashCompressor
     {
-        private Geohasher geohasher = new Geohasher();
 
         public List<string> Compress(string[] hashes, int minlevel = 1, int maxlevel = 12)
         {
@@ -37,7 +36,7 @@ namespace Geohash
                    
                         if (!deletegh.Contains(part) && !deletegh.Contains(geohash))
                         {
-                            var combinations = new HashSet<string>(geohasher.GetSubhashes(part));
+                            var combinations = new HashSet<string>(Geohasher.GetSubhashes(part));
 
                             if (combinations.IsSubsetOf(geohashes))
                             {

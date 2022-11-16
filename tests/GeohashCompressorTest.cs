@@ -14,15 +14,14 @@ namespace Geohash.Tests
         {
             var compressor = new GeohashCompressor();
 
-            var hasher = new Geohasher();
 
             var list = new List<string>();
 
-            list.AddRange(hasher.GetSubhashes("ABC"));
+            list.AddRange(Geohasher.GetSubhashes("ABC"));
 
-            list.AddRange(hasher.GetSubhashes("ABF"));
+            list.AddRange(Geohasher.GetSubhashes("ABF"));
 
-            list.AddRange(hasher.GetSubhashes("AFF"));
+            list.AddRange(Geohasher.GetSubhashes("AFF"));
 
             list.AddRange(new List<string>{ "KK", "F", "FKUVC", "FKUVX"});
 

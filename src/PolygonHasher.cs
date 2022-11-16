@@ -16,11 +16,9 @@ namespace Geohash
     {
 
 
-        private Geohasher geohasher = new Geohasher();
-
         private Geometry GeohashToPolygon(string geohash)
         {
-            var corners = geohasher.GetBoundingBox(geohash);
+            var corners = Geohasher.GetBoundingBox(geohash);
 
             var coordinates = new Coordinate[]
             {
@@ -63,7 +61,7 @@ namespace Geohash
                     {
                         processedHashes.Add(current_geohash, true);
 
-                        foreach (var neighborHash in geohasher.GetNeighbors(current_geohash).Values)
+                        foreach (var neighborHash in Geohasher.GetNeighbors(current_geohash).Values)
                         {
 
                             if (!processedHashes.ContainsKey(neighborHash))

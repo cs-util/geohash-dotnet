@@ -12,9 +12,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Encode_WithDefaultPrecison()
         {
-            var hasher = new Geohasher();
-
-            var hash = hasher.Encode(52.5174, 13.409);
+            var hash = Geohasher.Encode(52.5174, 13.409);
 
             Assert.AreEqual("u33dc0", hash);
         }
@@ -22,9 +20,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Encode_WithGivenPrecision_11()
         {
-            var hasher = new Geohasher();
-
-            var hash = hasher.Encode(52.517395, 13.408813, 11);
+            var hash = Geohasher.Encode(52.517395, 13.408813, 11);
 
             Assert.AreEqual("u33dc07zzzz", hash);
         }
@@ -32,9 +28,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Decode_Precision6()
         {
-            var hasher = new Geohasher();
-
-            var hash = hasher.Decode("u33dc0");
+            var hash = Geohasher.Decode("u33dc0");
 
             Assert.AreEqual(52.5174, Math.Round(hash.Item1, 4));
             Assert.AreEqual(13.409, Math.Round(hash.Item2, 3));
@@ -43,9 +37,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Decode_Precision12()
         {
-            var hasher = new Geohasher();
-
-            var hash = hasher.Decode("u33dc07zzzzx");
+            var hash = Geohasher.Decode("u33dc07zzzzx");
 
             Assert.AreEqual(52.51739494, Math.Round(hash.Item1, 8));
             Assert.AreEqual(13.40881297, Math.Round(hash.Item2, 8));
@@ -54,9 +46,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Subhashes()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetSubhashes("u33dc0");
+            var subhashes = Geohasher.GetSubhashes("u33dc0");
 
             Assert.AreEqual(32, subhashes.Length);
         }
@@ -64,9 +54,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Subhashes_1()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetSubhashes("u");
+            var subhashes = Geohasher.GetSubhashes("u");
 
             Assert.AreEqual(32, subhashes.Length);
         }
@@ -74,9 +62,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Neighbors()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetNeighbors("u33dc0");
+            var subhashes = Geohasher.GetNeighbors("u33dc0");
 
             Assert.AreEqual("u33dc1", subhashes[Direction.North]);
             Assert.AreEqual("u33dc3", subhashes[Direction.NorthEast]);
@@ -91,9 +77,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Neighbors_EdgeNorth()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetNeighbors("u");
+            var subhashes = Geohasher.GetNeighbors("u");
 
             Assert.AreEqual("h", subhashes[Direction.North]);
             Assert.AreEqual("5", subhashes[Direction.NorthWest]);
@@ -108,9 +92,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Neighbors_EdgeWest()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetNeighbors("9");
+            var subhashes = Geohasher.GetNeighbors("9");
 
             Assert.AreEqual("c", subhashes[Direction.North]);
             Assert.AreEqual("b", subhashes[Direction.NorthWest]);
@@ -125,9 +107,7 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Neighbors_EdgeSouth()
         {
-            var hasher = new Geohasher();
-
-            var subhashes = hasher.GetNeighbors("h");
+            var subhashes = Geohasher.GetNeighbors("h");
 
             Assert.AreEqual("k", subhashes[Direction.North]);
             Assert.AreEqual("7", subhashes[Direction.NorthWest]);
@@ -142,39 +122,32 @@ namespace Geohash.Tests
         [TestMethod]
         public void Should_Give_Neighbor()
         {
-            var hasher = new Geohasher();
-
-            Assert.AreEqual("u33dc1", hasher.GetNeighbor("u33dc0", Direction.North));
-            Assert.AreEqual("u33dc3", hasher.GetNeighbor("u33dc0", Direction.NorthEast));
-            Assert.AreEqual("u33dc2", hasher.GetNeighbor("u33dc0", Direction.East));
-            Assert.AreEqual("u33d9r", hasher.GetNeighbor("u33dc0", Direction.SouthEast));
-            Assert.AreEqual("u33d9p", hasher.GetNeighbor("u33dc0", Direction.South));
-            Assert.AreEqual("u33d8z", hasher.GetNeighbor("u33dc0", Direction.SouthWest));
-            Assert.AreEqual("u33dbb", hasher.GetNeighbor("u33dc0", Direction.West));
-            Assert.AreEqual("u33dbc", hasher.GetNeighbor("u33dc0", Direction.NorthWest));
+            Assert.AreEqual("u33dc1", Geohasher.GetNeighbor("u33dc0", Direction.North));
+            Assert.AreEqual("u33dc3", Geohasher.GetNeighbor("u33dc0", Direction.NorthEast));
+            Assert.AreEqual("u33dc2", Geohasher.GetNeighbor("u33dc0", Direction.East));
+            Assert.AreEqual("u33d9r", Geohasher.GetNeighbor("u33dc0", Direction.SouthEast));
+            Assert.AreEqual("u33d9p", Geohasher.GetNeighbor("u33dc0", Direction.South));
+            Assert.AreEqual("u33d8z", Geohasher.GetNeighbor("u33dc0", Direction.SouthWest));
+            Assert.AreEqual("u33dbb", Geohasher.GetNeighbor("u33dc0", Direction.West));
+            Assert.AreEqual("u33dbc", Geohasher.GetNeighbor("u33dc0", Direction.NorthWest));
         }
 
         [TestMethod]
         public void Should_Give_Parent()
         {
-            var hasher = new Geohasher();
-            Assert.AreEqual("u33db", hasher.GetParent("u33dbc"));
+            Assert.AreEqual("u33db", Geohasher.GetParent("u33dbc"));
         }
 
         [TestMethod]
         public void Should_Throw_Given_Incorrect_Lat()
         {
-            var hasher = new Geohasher();
-
-            Assert.ThrowsException<ArgumentException>(() => hasher.Encode(152.517395, 13.408813, 12));
+            Assert.ThrowsException<ArgumentException>(() => Geohasher.Encode(152.517395, 13.408813, 12));
         }
 
         [TestMethod]
         public void Should_Throw_Given_Incorrect_Lng()
         {
-            var hasher = new Geohasher();
-
-            Assert.ThrowsException<ArgumentException>(() => hasher.Encode(52.517395, 183.408813, 12));
+            Assert.ThrowsException<ArgumentException>(() => Geohasher.Encode(52.517395, 183.408813, 12));
         }
 
         private static Polygon GetTestPolygon(GeometryFactory geometryFactory)
