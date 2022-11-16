@@ -15,7 +15,7 @@ namespace Geohash
     internal class PolygonHasher
     {
 
-
+        [Obsolete("Dont use until https://github.com/Postlagerkarte/geohash-dotnet/issues/47 is clarified", true)]
         private Geometry GeohashToPolygon(string geohash)
         {
             var corners = Geohasher.GetBoundingBox(geohash);
@@ -35,6 +35,7 @@ namespace Geohash
 
         }
 
+        [Obsolete("Dont use until https://github.com/Postlagerkarte/geohash-dotnet/issues/47 is clarified")]
         public List<string> GetHashes(string startingHash, IPreparedGeometry polygon, int precision, Mode mode, IProgress<HashingProgress> progress = null)
         {
 

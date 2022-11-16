@@ -222,6 +222,7 @@ namespace Geohash
         /// <param name="mode">Fill Mode for the hashes</param>
         /// <param name="progress">Allows reporting progress</param>
         /// <returns></returns>
+        [Obsolete("Dont use until https://github.com/Postlagerkarte/geohash-dotnet/issues/47 is clarified")]
         public static List<string> GetHashes(string startingHash, IPreparedGeometry polygon, int precision = 6, Mode mode = Mode.Contains, IProgress<HashingProgress> progress = null)
         {
             return new PolygonHasher().GetHashes(startingHash, polygon, precision, mode, progress);
